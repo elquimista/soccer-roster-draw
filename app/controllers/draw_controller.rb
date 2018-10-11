@@ -1,5 +1,9 @@
 class DrawController < ApplicationController
   def index
+    match = Match.order(created_at: :desc).first
+    if match.home_team_score.nil? || match.away_team_score.nil?
+      redirect_to edit_match_path(match)
+    end
     @locations = Location.all
   end
 
