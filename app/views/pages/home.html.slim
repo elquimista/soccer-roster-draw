@@ -13,7 +13,8 @@
     .w-50
       small.font-italic.text-muted
         span.font-weight-bold> Date & Time:
-        = @match.date_time
+        span data-target="application.tzAwareDateTime" data-value=@match.date_time.iso8601
+          = @match.date_time
 
   - unless @match.home_team_score.nil?
     p.h1.mt-3.font-weight-bold.w-100.text-center
