@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.5-alpine
+    volumes:
+      - ./tmp/postgres:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5434:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+  app:
+    build:
+      context: .
+      args:
+        PORT: 3000
+    command: bash
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
