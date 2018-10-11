@@ -16,10 +16,13 @@
  */
 
 body {
-  background: #f6f2ef;
+  background: rgba(244, 239, 230, 1.0);
 }
 
-.container {
-  background: white;
+.navbar {
+  background: rgba(251, 248, 245, 1.0);
+}
+
+body > .container {
   min-height: 100vh;
 }
