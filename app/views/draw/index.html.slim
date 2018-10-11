@@ -1,7 +1,7 @@
 h2.mt-3.font-weight-bold.w-100.text-center
   | Seed New Draw
 
-= form_tag nil, class: 'draw-form mt-5 px-5 align-self-center'
+= form_with url: draw_path, data: { remote: false }, class: 'draw-form mt-5 px-5 align-self-center'
   .form-group
     .row: .col
       = label_tag :location_id, 'Location', class: 'font-weight-bold'
