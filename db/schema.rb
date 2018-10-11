@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_085112) do
+ActiveRecord::Schema.define(version: 2018_10_11_090934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 2018_10_11_085112) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "date_time"
+    t.uuid "location_id"
+    t.uuid "home_team_id"
+    t.uuid "away_team_id"
+    t.integer "home_team_score"
+    t.integer "away_team_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["location_id"], name: "index_matches_on_location_id"
   end
 
   create_table "players", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -42,6 +56,9 @@ ActiveRecord::Schema.define(version: 2018_10_11_085112) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "matches", "locations"
+  add_foreign_key "matches", "teams", column: "away_team_id"
+  add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "players_teams", "players"
   add_foreign_key "players_teams", "teams"
 end
