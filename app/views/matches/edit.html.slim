@@ -29,18 +29,18 @@ h2.mt-5.font-weight-bold.w-100.text-center
           th scope="col" Home Team
           th scope="col" Away Team
       tbody
-        - [@home_team, @away_team].map(&:players).map(&:size).min.times do |i|
+        - [@home_players, @away_players].map(&:size).min.times do |i|
           tr
             td= i + 1
-            td= @home_team.players[i].name
-            td= @away_team.players[i].name
-        - if @home_team.players.size > @away_team.players.size
+            td= @home_players[i].name
+            td= @away_players[i].name
+        - if @home_players.size > @away_players.size
           tr
-            td= @home_team.players.size
-            td= @home_team.players.last.name
+            td= @home_players.size
+            td= @home_players.last.name
             td ー
-        - elsif @home_team.players.size < @away_team.players.size
+        - elsif @home_players.size < @away_players.size
           tr
-            td= @away_team.players.size
+            td= @away_players.size
             td ー
-            td= @away_team.players.last.name
+            td= @away_players.last.name

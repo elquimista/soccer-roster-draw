@@ -3,8 +3,8 @@ class MatchesController < ApplicationController
     @match = Match
       .includes(home_team: [:players], away_team: [:players])
       .find(params[:id])
-    @home_team = @match.home_team
-    @away_team = @match.away_team
+    @home_players = @match.home_team.players.order(:birthdate)
+    @away_players = @match.away_team.players.order(:birthdate)
   end
 
   def update
@@ -12,8 +12,8 @@ class MatchesController < ApplicationController
     if @match.update(match_params)
       redirect_to root_path, notice: 'Fixture updated successfully.'
     else
-      @home_team = @match.home_team
-      @away_team = @match.away_team
+      @home_players = @match.home_team.players.order(:birthdate)
+      @away_players = @match.away_team.players.order(:birthdate)
       render action: :edit
     end
   end

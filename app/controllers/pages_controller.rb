@@ -4,7 +4,7 @@ class PagesController < ApplicationController
       .includes(home_team: [:players], away_team: [:players])
       .order(created_at: :desc)
       .first
-    @home_team = @match.home_team
-    @away_team = @match.away_team
+    @home_players = @match.home_team.players.order(:birthdate)
+    @away_players = @match.away_team.players.order(:birthdate)
   end
 end
