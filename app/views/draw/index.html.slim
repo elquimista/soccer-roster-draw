@@ -1,1 +1,18 @@
-h1 Draw page
+h2.mt-3.font-weight-bold.w-100.text-center
+  | Seed New Draw
+
+= form_tag nil, class: 'draw-form mt-5 px-5 align-self-center'
+  .form-group
+    .row: .col
+      = label_tag :location_id, 'Location', class: 'font-weight-bold'
+    .row: .col
+      = collection_select nil, :location_id, @locations, :id, :name, {}, class: 'w-100'
+  .form-group
+    .row: .col
+      = label_tag :date_time, 'Date & Time', class: 'font-weight-bold'
+    .row: .col
+      = select_datetime DateTime.now, prefix: :date_time
+  .row.mt-5
+    .col
+      button.btn.btn-dark.btn-lg.btn-block type="submit" data-disable-with="Seeding..."
+        | Seed
