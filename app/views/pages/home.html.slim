@@ -1,4 +1,48 @@
 - if @match.present?
+  h2.mt-5.font-weight-bold.w-100.text-center
+    - if @match.home_team_score.nil?
+      | Upcoming Fixture
+    - else
+      | Last Fixture
+
+  .d-flex.flex-column.align-items-center.mt-4
+    .w-50
+      small.font-italic.text-muted
+        span.font-weight-bold> Location:
+        = @match.location.name
+    .w-50
+      small.font-italic.text-muted
+        span.font-weight-bold> Date & Time:
+        = @match.date_time
+
+  - unless @match.home_team_score.nil?
+    p.h1.mt-3.font-weight-bold.w-100.text-center
+      | #{@match.home_team_score} - #{@match.away_team_score}
+
+  .d-flex.justify-content-center.mt-5
+    table.table.table-bordered.table-hover.w-50.table-sm
+      thead
+        tr
+          th scope="col" #
+          th scope="col" Home Team
+          th scope="col" Away Team
+      tbody
+        - [@home_team, @away_team].map(&:players).map(&:size).min.times do |i|
+          tr
+            td= i + 1
+            td= @home_team.players[i].name
+            td= @away_team.players[i].name
+        - if @home_team.players.size > @away_team.players.size
+          tr
+            td= @home_team.players.size
+            td= @home_team.players.last.name
+            td ー
+        - elsif @home_team.players.size < @away_team.players.size
+          tr
+            td= @away_team.players.size
+            td ー
+            td= @away_team.players.last.name
+
 - else
   .d-flex.flex-column.flex-fill.justify-content-center.pb-5
     p.h5.font-weight-normal.text-center.text-black-50.align-self-center.w-100
