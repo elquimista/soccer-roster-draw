@@ -10,7 +10,8 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update(match_params)
-      redirect_to root_path, notice: 'Fixture updated successfully.'
+      flash[:success] = 'Fixture updated successfully.'
+      redirect_to root_path
     else
       @home_players = @match.home_team.players.order(:birthdate)
       @away_players = @match.away_team.players.order(:birthdate)

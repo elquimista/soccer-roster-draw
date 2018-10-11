@@ -1,5 +1,8 @@
 - if flash.keys.size > 0
   .container.mt-4
+    - if flash[:success]
+      .alert.alert-success role="alert"
+        == flash[:success]
     - if flash[:error]
       .alert.alert-danger role="alert"
         == flash[:error]
