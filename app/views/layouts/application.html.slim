@@ -10,5 +10,6 @@ html
 
   body
     = render 'layouts/navbar'
-    .container.d-flex.flex-column
+    = render 'layouts/flash'
+    .container.main-container.d-flex.flex-column
       = yield

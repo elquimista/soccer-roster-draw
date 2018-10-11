@@ -24,6 +24,6 @@ body {
   background: rgba(251, 248, 245, 1.0);
 }
 
-body > .container {
+.main-container {
   min-height: 100vh;
 }
