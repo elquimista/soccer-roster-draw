@@ -2,3 +2,6 @@ nav.navbar.navbar-light.shadow-sm
   .container
     = link_to root_path, class: 'navbar-brand'
       | Soccer Roster Draw
+    - if user_signed_in?
+      = link_to logout_path, data: { method: :delete }, class: 'btn btn-outline-danger'
+        | Log Out
