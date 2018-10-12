@@ -1,0 +1,10 @@
+.d-flex.flex-fill.justify-content-center.align-items-center.pb-5
+  .card.w-50.mb-5
+    .card-body
+      = form_with url: login_path, data: { remote: false } do |f|
+        h4.card-title.font-weight-bold.text-center
+          | Log in to ...
+        h6.card-subtitle.mb-4.text-muted.text-center
+          | ..errh.. I don't know...
+        = f.password_field :password, class: 'form-control form-control-lg', placeholder: "What's the password?"
+        = f.submit 'Go', class: 'btn btn-dark btn-lg btn-block mt-3'
