@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def new
     redirect_to draw_path if user_signed_in?
   end

@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def home
     @match = Match
       .includes(home_team: [:players], away_team: [:players])
